@@ -220,13 +220,13 @@ function clickToSwap() {
     const clickedId = parseInt(this.id)
     
     if (selectedSquare === null) {
-        // First click - select the square
+        // First click - select the square with box-shadow instead of border
         selectedSquare = clickedId
-        this.style.border = '3px solid white'
+        this.style.boxShadow = 'inset 0 0 0 3px white'
         console.log('Selected square:', clickedId)
     } else if (selectedSquare === clickedId) {
         // Clicking the same square - deselect
-        this.style.border = 'none'
+        this.style.boxShadow = 'none'
         selectedSquare = null
         console.log('Deselected square')
     } else {
@@ -247,8 +247,8 @@ function clickToSwap() {
             console.log('Invalid move from', selectedSquare, 'to', clickedId)
         }
         
-        // Clear selection
-        squares[selectedSquare].style.border = 'none'
+        // Clear selection using box-shadow
+        squares[selectedSquare].style.boxShadow = 'none'
         selectedSquare = null
     }
 }
