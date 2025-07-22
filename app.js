@@ -34,12 +34,17 @@ let colorBeingReplaced
 let squareIdBeingDragged
 let squareIdBeingReplaced
 
+// Click-to-swap mechanism for better mobile support
+let selectedSquare = null
+
 squares.forEach(square => square.addEventListener('dragstart', dragStart))
 squares.forEach(square => square.addEventListener('dragend', dragEnd))
 squares.forEach(square => square.addEventListener('dragover', dragOver))
 squares.forEach(square => square.addEventListener('dragenter', dragEnter))
 squares.forEach(square => square.addEventListener('drageleave', dragLeave))
 squares.forEach(square => square.addEventListener('drop', dragDrop))
+// Add click support for mobile/easier interaction
+squares.forEach(square => square.addEventListener('click', clickToSwap))
 
 function dragStart(){
     colorBeingDragged = this.style.backgroundImage
