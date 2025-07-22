@@ -112,8 +112,8 @@ function dragEnd() {
 
 //drop candies once some have been cleared
 function moveIntoSquareBelow() {
-    for (i = 0; i < 55; i ++) {
-        if(squares[i + width].style.backgroundImage === '') {
+    for (i = 0; i < (width * width - width); i ++) { // Fixed: ensure we don't go beyond grid bounds
+        if(squares[i + width] && squares[i + width].style.backgroundImage === '') {
             squares[i + width].style.backgroundImage = squares[i].style.backgroundImage
             squares[i].style.backgroundImage = ''
             const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
