@@ -214,4 +214,66 @@ window.setInterval(function(){
     checkColumnForThree()
     moveIntoSquareBelow()
   }, 100)
+
+// Click-to-swap functionality (easier than drag and drop)
+function clickToSwap() {
+    const clickedId = parseInt(this.id)
+    
+    if (selectedSquare === null) {
+        // First click - select the square
+        selectedSquare = clickedId
+        this.style.border = '3px solid white'
+        console.log('Selected square:', clickedId)
+    } else if (selectedSquare === clickedId) {
+        // Clicking the same square - deselect
+        this.style.border = 'none'
+        selectedSquare = null
+        console.log('Deselected square')
+    } else {
+        // Second click - attempt swap
+        const isValidMove = checkValidMove(selectedSquare, clickedId)
+        
+        if (isValidMove) {
+            // Perform the swap
+            const selectedSquareElement = squares[selectedSquare]
+            const clickedSquareElement = squares[clickedId]
+            
+            const tempImage = selectedSquareElement.style.backgroundImage
+            selectedSquareElement.style.backgroundImage = clickedSquareElement.style.backgroundImage
+            clickedSquareElement.style.backgroundImage = tempImage
+            
+            console.log('Swapped squares:', selectedSquare, 'and', clickedId)
+        } else {
+            console.log('Invalid move from', selectedSquare, 'to', clickedId)
+        }
+        
+        // Clear selection
+        squares[selectedSquare].style.border = 'none'
+        selectedSquare = null
+    }
+}
+
+function checkValidMove(from, to) {
+    const validMoves = [
+        from - 1, // left
+        from - width, // up  
+        from + 1, // right
+        from + width // down
+    ]
+    
+    // Check row boundaries for left/right moves
+    const fromRow = Math.floor(from / width)
+    const toRow = Math.floor(to / width)
+    
+    // Remove invalid horizontal moves that cross row boundaries
+    if (to === from - 1 && fromRow !== toRow) {
+        return false
+    }
+    if (to === from + 1 && fromRow !== toRow) {
+        return false
+    }
+    
+    return validMoves.includes(to)
+}
+
 })
