@@ -1,22 +1,50 @@
 .grid {
-    height: 570px;   /* 8 * 70px + 10px padding */
-    width: 570px;    /* 8 * 70px + 10px padding */
-    display: flex;
-    flex-wrap: wrap;
+    /* CSS Grid Layout for perfect 8x8 structure */
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 2px;
+    
+    /* Fixed dimensions for consistent layout */
+    width: 320px;
+    height: 320px;
+    
+    /* Positioning and styling */
     margin-left: 80px;
     margin-top: 50px;
     background-color: rgba(109, 127, 151, 0.5);
-    padding: 5px;
+    padding: 8px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) inset, 0 1px 0 #fff;
     color: #85796b;
-    overflow: hidden; /* Prevent children from overflowing */
+    
+    /* Prevent any overflow */
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .grid div {
-    height: 70px;
-    width: 70px;
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    /* Each candy cell - calculated to fit perfectly */
+    width: 100%;
+    height: 100%;
+    min-width: 36px;  /* (320px - 16px padding - 14px gaps) / 8 */
+    min-height: 36px;
+    max-width: 36px;
+    max-height: 36px;
+    
+    /* Ensure candy images fit perfectly */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* Box model */
+    box-sizing: border-box;
+    
+    /* Prevent any movement outside bounds */
+    position: relative;
+    
+    /* Ensure draggable elements stay contained */
+    contain: layout;
 }
 
 h3 {
