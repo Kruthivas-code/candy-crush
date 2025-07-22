@@ -64,8 +64,12 @@ h1 {
 
 body {
   background-image: url("candy-crush-background-2.png");
-  max-width: 100vh;
+  max-width: 100vw;
+  min-height: 100vh;
   display: flex;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .score-board {
@@ -74,7 +78,8 @@ body {
   margin-top: 200px;
   margin-left: 200px;
   margin-bottom: 350px;
-  min-width: 200px;
+  width: 200px;
+  height: 120px;
 
   display: flex;
   flex-direction: column;
@@ -84,4 +89,7 @@ body {
   background-image: linear-gradient(#FFB6C1, #FFC0CB);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) inset, 0 1px 0 #fff;
   color: #85796b;
+  
+  /* Ensure scoreboard stays in place */
+  flex-shrink: 0;
 }
