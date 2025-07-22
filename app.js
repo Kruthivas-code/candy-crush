@@ -72,11 +72,19 @@ function dragEnd() {
     let validMove = validMoves.includes(squareIdBeingReplaced)
 
     if (squareIdBeingReplaced && validMove) {
+        // Valid move - keep the swap and reset variables
+        colorBeingDragged = null
+        colorBeingReplaced = null
+        squareIdBeingDragged = null
         squareIdBeingReplaced = null
     }  else if (squareIdBeingReplaced && !validMove) {
-       squares[squareIdBeingReplaced].style.backgroundImage = colorBeingReplaced
-       squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
-    } else  squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
+        // Invalid move - revert the swap
+        squares[squareIdBeingReplaced].style.backgroundImage = colorBeingReplaced
+        squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
+    } else {
+        // No target - revert dragged element
+        squares[squareIdBeingDragged].style.backgroundImage = colorBeingDragged
+    }
 }
 
 //drop candies once some have been cleared
