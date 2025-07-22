@@ -68,7 +68,25 @@ function dragDrop() {
 
 function dragEnd() {
     //What is a valid move?
-    let validMoves = [squareIdBeingDragged -1 , squareIdBeingDragged -width, squareIdBeingDragged +1, squareIdBeingDragged +width]
+    let validMoves = [
+        squareIdBeingDragged - 1, // left
+        squareIdBeingDragged - width, // up  
+        squareIdBeingDragged + 1, // right
+        squareIdBeingDragged + width // down
+    ]
+    
+    // Check row boundaries for left/right moves
+    let currentRow = Math.floor(squareIdBeingDragged / width)
+    let replacedRow = Math.floor(squareIdBeingReplaced / width)
+    
+    // Remove invalid horizontal moves that cross row boundaries
+    if (squareIdBeingReplaced === squareIdBeingDragged - 1 && currentRow !== replacedRow) {
+        validMoves = validMoves.filter(move => move !== squareIdBeingReplaced)
+    }
+    if (squareIdBeingReplaced === squareIdBeingDragged + 1 && currentRow !== replacedRow) {
+        validMoves = validMoves.filter(move => move !== squareIdBeingReplaced)
+    }
+    
     let validMove = validMoves.includes(squareIdBeingReplaced)
 
     if (squareIdBeingReplaced && validMove) {
