@@ -1,6 +1,6 @@
 .grid {
     height: 560px;
-    min-width: 560px;
+    width: 560px;  /* Fixed width instead of min-width */
     display: flex;
     flex-wrap: wrap;
     margin-left: 80px;
@@ -10,11 +10,13 @@
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) inset, 0 1px 0 #fff;
     color: #85796b;
+    overflow: hidden; /* Prevent children from overflowing */
 }
 
 .grid div {
     height: 70px;
     width: 70px;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
 h3 {
