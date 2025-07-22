@@ -56,7 +56,7 @@ function dragEnter(e) {
 }
 
 function dragLeave() {
-    this.style.backgroundImage = ''
+    // Don't clear the image during drag leave - it causes visual issues
 }
 
 function dragDrop() {
