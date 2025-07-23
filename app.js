@@ -4,6 +4,7 @@ const scoreDisplay = document.getElementById('score')
 const width = 8
 const squares = []
 let score = 0
+let gameStarted = false // Flag to control when match checking begins
 
 const candyColors = [
     'url(images/red-candy.png)',
