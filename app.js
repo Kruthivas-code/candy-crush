@@ -203,19 +203,20 @@ function moveIntoSquareBelow() {
               let randomColor = Math.floor(Math.random() * candyColors.length)
               squares[i].style.backgroundImage = candyColors[randomColor]
               
-              // Ensure new candy is visible and properly animated
+              // Force visibility for new candies
               squares[i].style.opacity = '1'
               squares[i].style.transform = 'translateY(0) scale(1)'
+              squares[i].style.visibility = 'visible'
               
-              // Remove any previous animation classes and add current ones
+              // Remove conflicting animation classes
               squares[i].classList.remove('stack-animate')
               squares[i].classList.add('animate-in')
               
-              // Add a small drop animation for new candies
-              squares[i].style.animation = 'none'
+              // Clear any transform that might hide the candy
               setTimeout(() => {
-                squares[i].style.animation = 'newCandyDrop 0.3s ease-out'
-              }, 10)
+                squares[i].style.opacity = '1'
+                squares[i].style.transform = 'translateY(0) scale(1)'
+              }, 50)
             }
         }
     }
