@@ -28,12 +28,21 @@ function createBoard() {
     // Generate candy that doesn't create initial matches
     let randomColor = getValidCandyColor(i)
     square.style.backgroundImage = candyColors[randomColor]
+    
+    // Initially prepare for stacking animation
+    square.classList.add('prepare-stack')
+    
     grid.appendChild(square)
     squares.push(square)
   }
   
   // Start the stacking animation after board creation
   startStackingAnimation()
+  
+  // Fallback: ensure all candies are visible after a delay
+  setTimeout(() => {
+    ensureAllCandiesVisible()
+  }, 3000)
 }
 
 // Function to get a candy color that won't create initial matches
