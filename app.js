@@ -234,7 +234,6 @@ function moveIntoSquareBelow() {
         })
       }
     }
-  }
 checkColumnForFour()
 
   //for row of Three
