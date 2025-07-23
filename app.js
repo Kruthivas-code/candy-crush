@@ -332,7 +332,8 @@ function moveIntoSquareBelow() {
       }
     }
   }
-checkColumnForThree()
+// Remove initial match checking - these should NOT run during board creation
+// checkColumnForThree()
 
 // Checks carried out indefintely - Add Button to clear interval for best practise, or clear on game over/game won. If you have this indefinite check you can get rid of calling the check functions above.
 window.setInterval(function(){
