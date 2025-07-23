@@ -75,6 +75,21 @@
   animation: stackIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
+/* New candy drop animation */
+@keyframes newCandyDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.8);
+  }
+  60% {
+    transform: translateY(5px) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 h3 {
  font-family: "Montserrat", sans-serif;
  text-transform: uppercase;
