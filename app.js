@@ -255,7 +255,8 @@ checkColumnForFour()
       }
     }
   }
-  checkRowForThree()
+  // Remove initial match checking - only check after user interaction
+  // checkRowForThree()
 
 //for column of Three
   function checkColumnForThree() {
