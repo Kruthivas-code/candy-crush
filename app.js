@@ -186,8 +186,17 @@ function dragEnd() {
 function moveIntoSquareBelow() {
     for (i = 0; i < (width * width - width); i ++) { // Fixed: ensure we don't go beyond grid bounds
         if(squares[i + width] && squares[i + width].style.backgroundImage === '') {
+            // Move candy from above to below
             squares[i + width].style.backgroundImage = squares[i].style.backgroundImage
             squares[i].style.backgroundImage = ''
+            
+            // Ensure the moved candy maintains visibility
+            if (squares[i + width].style.backgroundImage !== '') {
+                squares[i + width].style.opacity = '1'
+                squares[i + width].style.transform = 'translateY(0) scale(1)'
+                squares[i + width].classList.add('animate-in')
+            }
+            
             const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
             const isFirstRow = firstRow.includes(i)
             if (isFirstRow && (squares[i].style.backgroundImage === '')) {
