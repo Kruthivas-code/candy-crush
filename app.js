@@ -216,7 +216,8 @@ function moveIntoSquareBelow() {
       }
     }
   }
-  checkRowForFour()
+  // Remove initial match checking - only check after user interaction
+  // checkRowForFour()
 
 //for column of Four
   function checkColumnForFour() {
