@@ -21,7 +21,9 @@ function createBoard() {
     const square = document.createElement('div')
     square.setAttribute('draggable', true)
     square.setAttribute('id', i)
-    let randomColor = Math.floor(Math.random() * candyColors.length)
+    
+    // Generate candy that doesn't create initial matches
+    let randomColor = getValidCandyColor(i)
     square.style.backgroundImage = candyColors[randomColor]
     grid.appendChild(square)
     squares.push(square)
@@ -29,6 +31,47 @@ function createBoard() {
   
   // Start the stacking animation after board creation
   startStackingAnimation()
+}
+
+// Function to get a candy color that won't create initial matches
+function getValidCandyColor(position) {
+  const availableColors = [0, 1, 2, 3, 4, 5] // All candy colors
+  
+  // Check left neighbors (avoid horizontal matches)
+  const leftColors = []
+  if (position % width >= 2) { // If we have at least 2 left neighbors
+    const left1 = getCandyColorIndex(position - 1)
+    const left2 = getCandyColorIndex(position - 2)
+    if (left1 === left2) {
+      leftColors.push(left1)
+    }
+  }
+  
+  // Check top neighbors (avoid vertical matches)
+  const topColors = []
+  if (Math.floor(position / width) >= 2) { // If we have at least 2 top neighbors
+    const top1 = getCandyColorIndex(position - width)
+    const top2 = getCandyColorIndex(position - width * 2)
+    if (top1 === top2) {
+      topColors.push(top1)
+    }
+  }
+  
+  // Filter out colors that would create matches
+  const invalidColors = [...leftColors, ...topColors]
+  const validColors = availableColors.filter(color => !invalidColors.includes(color))
+  
+  // Return a random valid color, or fallback to any color if none valid
+  return validColors.length > 0 
+    ? validColors[Math.floor(Math.random() * validColors.length)]
+    : Math.floor(Math.random() * candyColors.length)
+}
+
+// Helper function to get candy color index from position
+function getCandyColorIndex(position) {
+  if (position < 0 || position >= squares.length || !squares[position]) return -1
+  const backgroundImage = squares[position].style.backgroundImage
+  return candyColors.indexOf(backgroundImage)
 }
 
 // Stacking animation function
