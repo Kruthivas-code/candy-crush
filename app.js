@@ -6,8 +6,8 @@ const squares = []
 let score = 0
 let gameStarted = false // Flag to control when match checking begins
 
-// Initialize score display
-scoreDisplay.innerHTML = score
+// Initialize score display to 0
+scoreDisplay.innerHTML = "0"
 
 const candyColors = [
     'url(images/red-candy.png)',
