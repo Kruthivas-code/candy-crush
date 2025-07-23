@@ -100,12 +100,34 @@ function startStackingAnimation() {
         if (square) {
           // Add staggered delay within column for extra effect
           setTimeout(() => {
+            square.classList.remove('prepare-stack')
             square.classList.add('stack-animate')
+            
+            // Ensure visibility as backup
+            setTimeout(() => {
+              square.style.opacity = '1'
+              square.style.transform = 'translateY(0) scale(1)'
+              square.classList.add('animate-in')
+            }, 400)
           }, row * 50) // 50ms delay between rows within the same column
         }
       }
     }, col * 200) // 200ms delay between columns as requested
   }
+}
+
+// Fallback function to ensure all candies are visible
+function ensureAllCandiesVisible() {
+  squares.forEach((square, index) => {
+    if (square && square.style.backgroundImage) {
+      // Force visibility for any candy that might be stuck
+      square.style.opacity = '1'
+      square.style.transform = 'translateY(0) scale(1)'
+      square.classList.add('animate-in')
+      square.classList.remove('prepare-stack')
+    }
+  })
+  console.log('Fallback: Ensured all candies are visible')
 }
 createBoard()
 
