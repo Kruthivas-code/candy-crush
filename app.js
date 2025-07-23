@@ -193,6 +193,20 @@ function moveIntoSquareBelow() {
             if (isFirstRow && (squares[i].style.backgroundImage === '')) {
               let randomColor = Math.floor(Math.random() * candyColors.length)
               squares[i].style.backgroundImage = candyColors[randomColor]
+              
+              // Ensure new candy is visible and properly animated
+              squares[i].style.opacity = '1'
+              squares[i].style.transform = 'translateY(0) scale(1)'
+              
+              // Remove any previous animation classes and add current ones
+              squares[i].classList.remove('stack-animate')
+              squares[i].classList.add('animate-in')
+              
+              // Add a small drop animation for new candies
+              squares[i].style.animation = 'none'
+              setTimeout(() => {
+                squares[i].style.animation = 'newCandyDrop 0.3s ease-out'
+              }, 10)
             }
         }
     }
