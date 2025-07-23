@@ -314,6 +314,9 @@ function clickToSwap() {
             selectedSquareElement.style.backgroundImage = clickedSquareElement.style.backgroundImage
             clickedSquareElement.style.backgroundImage = tempImage
             
+            // Enable match checking after first user move
+            gameStarted = true
+            
             console.log('Swapped squares:', selectedSquare, 'and', clickedId)
         } else {
             console.log('Invalid move from', selectedSquare, 'to', clickedId)
