@@ -277,11 +277,14 @@ checkColumnForThree()
 
 // Checks carried out indefintely - Add Button to clear interval for best practise, or clear on game over/game won. If you have this indefinite check you can get rid of calling the check functions above.
 window.setInterval(function(){
-    checkRowForFour()
-    checkColumnForFour()
-    checkRowForThree()
-    checkColumnForThree()
-    moveIntoSquareBelow()
+    // Only check for matches after the game has started (user has made first move)
+    if (gameStarted) {
+        checkRowForFour()
+        checkColumnForFour()
+        checkRowForThree()
+        checkColumnForThree()
+        moveIntoSquareBelow()
+    }
   }, 100)
 
 // Click-to-swap functionality (easier than drag and drop)
