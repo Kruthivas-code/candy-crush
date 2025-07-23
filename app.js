@@ -25,6 +25,31 @@ function createBoard() {
     grid.appendChild(square)
     squares.push(square)
   }
+  
+  // Start the stacking animation after board creation
+  startStackingAnimation()
+}
+
+// Stacking animation function
+function startStackingAnimation() {
+  const columns = 8
+  
+  for (let col = 0; col < columns; col++) {
+    setTimeout(() => {
+      // Animate all squares in this column
+      for (let row = 0; row < width; row++) {
+        const squareIndex = row * width + col
+        const square = squares[squareIndex]
+        
+        if (square) {
+          // Add staggered delay within column for extra effect
+          setTimeout(() => {
+            square.classList.add('stack-animate')
+          }, row * 50) // 50ms delay between rows within the same column
+        }
+      }
+    }, col * 200) // 200ms delay between columns as requested
+  }
 }
 createBoard()
 
