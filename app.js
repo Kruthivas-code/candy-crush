@@ -190,10 +190,8 @@ function moveIntoSquareBelow() {
             squares[i + width].style.backgroundImage = squares[i].style.backgroundImage
             squares[i].style.backgroundImage = ''
             
-            // Ensure the moved candy maintains visibility
+            // Ensure the moved candy is visible
             if (squares[i + width].style.backgroundImage !== '') {
-                squares[i + width].style.opacity = '1'
-                squares[i + width].style.transform = 'translateY(0) scale(1)'
                 squares[i + width].classList.add('animate-in')
             }
             
@@ -203,20 +201,10 @@ function moveIntoSquareBelow() {
               let randomColor = Math.floor(Math.random() * candyColors.length)
               squares[i].style.backgroundImage = candyColors[randomColor]
               
-              // Force visibility for new candies
+              // Make sure new candy is visible immediately
+              squares[i].classList.add('animate-in')
               squares[i].style.opacity = '1'
               squares[i].style.transform = 'translateY(0) scale(1)'
-              squares[i].style.visibility = 'visible'
-              
-              // Remove conflicting animation classes
-              squares[i].classList.remove('stack-animate')
-              squares[i].classList.add('animate-in')
-              
-              // Clear any transform that might hide the candy
-              setTimeout(() => {
-                squares[i].style.opacity = '1'
-                squares[i].style.transform = 'translateY(0) scale(1)'
-              }, 50)
             }
         }
     }
