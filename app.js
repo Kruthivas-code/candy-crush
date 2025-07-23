@@ -221,9 +221,12 @@ function moveIntoSquareBelow() {
             squares[i + width].style.backgroundImage = squares[i].style.backgroundImage
             squares[i].style.backgroundImage = ''
             
-            // Ensure the moved candy is visible
+            // Ensure the moved candy is visible immediately
             if (squares[i + width].style.backgroundImage !== '') {
                 squares[i + width].classList.add('animate-in')
+                squares[i + width].classList.remove('prepare-stack')
+                squares[i + width].style.opacity = '1'
+                squares[i + width].style.transform = 'translateY(0) scale(1)'
             }
             
             const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
@@ -232,10 +235,17 @@ function moveIntoSquareBelow() {
               let randomColor = Math.floor(Math.random() * candyColors.length)
               squares[i].style.backgroundImage = candyColors[randomColor]
               
-              // Make sure new candy is visible immediately
+              // Force immediate visibility for new candies
               squares[i].classList.add('animate-in')
+              squares[i].classList.remove('prepare-stack')
               squares[i].style.opacity = '1'
               squares[i].style.transform = 'translateY(0) scale(1)'
+              
+              // Add a brief drop animation
+              squares[i].style.animation = 'newCandyDrop 0.3s ease-out'
+              setTimeout(() => {
+                squares[i].style.animation = 'none'
+              }, 300)
             }
         }
     }
