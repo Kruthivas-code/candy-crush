@@ -291,7 +291,8 @@ function moveIntoSquareBelow() {
       }
     }
   }
-checkColumnForFour()
+// Remove initial match checking - these should NOT run during board creation
+// checkColumnForFour()
 
   //for row of Three
   function checkRowForThree() {
